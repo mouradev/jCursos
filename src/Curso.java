@@ -23,11 +23,9 @@ public class Curso {
     }
     
     public boolean pertence(Aluno a) {
-        for(int i = 0; i < qtdAlunosMatriculados; i++)
-            if(alunos[i].getMatricula() == a.getMatricula())
-                return true;
+        boolean posicao = posicao(a.getMatricula()) >= 0;
         
-        return false;
+        return posicao;
     }
     
     public void imprimir() {
@@ -47,6 +45,26 @@ public class Curso {
                    alunos[i].getMatricula(), alunos[i].getNome());
                     
         }
+    }
+    
+    public boolean remover(int matricula) {
+        int posicao = posicao(matricula);
+        
+        if(posicao >= 0 ) {
+            alunos[posicao] = alunos[qtdAlunosMatriculados - 1];
+            alunos[qtdAlunosMatriculados -1] = null;
+            qtdAlunosMatriculados--;
+        }
+        
+        return false;
+    }
+    
+    private int posicao(int matricula) {
+        for(int i = 0; i < qtdAlunosMatriculados; i++) {
+            if(alunos[i].getMatricula() == matricula)
+                return i;
+        }
+        return -1;
     }
     
 }
