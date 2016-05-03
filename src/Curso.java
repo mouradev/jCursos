@@ -11,7 +11,7 @@ public class Curso {
     }
     
     public boolean adicionar(Aluno a) {
-        if(alunos.length >= qtdAlunosMatriculados && !pertence(a)){
+        if(alunos.length >= qtdAlunosMatriculados && !pertence(a.getMatricula())){
             
             alunos[qtdAlunosMatriculados] = a;
             this.qtdAlunosMatriculados++;
@@ -22,8 +22,8 @@ public class Curso {
         return false;
     }
     
-    public boolean pertence(Aluno a) {
-        boolean posicao = posicao(a.getMatricula()) >= 0;
+    public boolean pertence(int matricula) {
+        boolean posicao = posicao(matricula) >= 0;
         
         return posicao;
     }
@@ -56,6 +56,12 @@ public class Curso {
             qtdAlunosMatriculados--;
         }
         
+        return false;
+    }
+    
+    public boolean temVaga() {
+        if(alunos.length > qtdAlunosMatriculados)
+            return true;
         return false;
     }
     
